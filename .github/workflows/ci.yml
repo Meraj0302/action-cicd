@@ -1,0 +1,26 @@
+name: test ci
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  buils:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repsitory
+        uses: actions/checkout@v4
+      - name: setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+      - name: install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+          pip install pandas
+      - name: Run Test
+        run: pytest
+        
